@@ -1,0 +1,17 @@
+cms_core_homepage:
+    pattern:  /
+    defaults: { _controller: CmsCoreBundle:Default:index }
+
+cms_core_adminpage:
+    pattern:  /admin
+    defaults: { _controller: CmsCoreBundle:Admin:index }
+
+cms_core_login:
+    pattern:  /login
+    defaults: { _controller: CmsCoreBundle:Login:index }
+
+cms_core_login_check:
+        pattern:   /login_check
+
+cms_core_logout:
+    pattern: /logout

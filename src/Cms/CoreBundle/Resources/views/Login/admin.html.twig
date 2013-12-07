@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css"
+          href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900"/>
+    <link rel="stylesheet" type="text/css"
+          href="/themes/reset.css">
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="content">
+        <form action="{{ path('cms_core_login_check') }}" method="post">
+            <h1>Login</h1>
+            <div>
+                <label for="username"></label>
+                <input type="text" placeholder="Username" name=_username"" id="username" />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="_password" id="password" />
+            </div>
+            <div>
+                <input type="submit" value="Log in" />
+                <a href="#">Lost your password?</a>
+                <a href="#">Register</a>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
