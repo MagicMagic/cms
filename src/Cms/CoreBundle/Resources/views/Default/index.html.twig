@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Default{% endblock %}
+
+{% block body %}
+    <div id="content">
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('cms_core_logout') }}" title="Logout">Logout</a>
+        {% else %}
+            <a href="{{ path('cms_core_login') }}" title="Login" >Login</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -10,7 +10,7 @@
     /**
      * User
      *
-     * @ORM\Table()
+     * @ORM\Table(name="users")
      * @ORM\Entity(repositoryClass="Cms\CoreBundle\Entity\UserRepository")
      */
     class User implements AdvancedUserInterface, \Serializable
@@ -41,7 +41,7 @@
         /**
          * @var string
          *
-         * @ORM\Column(name="salt", type="string", length=32)
+         * @ORM\Column(name="salt", type="string", length=42)
          */
         private $salt;
 
@@ -81,6 +81,7 @@
 
         public function __construct()
         {
+            $this->active      = 1;
             $this->salt        = sha1(uniqid(null, true));
             $this->dateCreated = new \DateTime();
             $this->roles       = new ArrayCollection();
@@ -292,8 +293,7 @@
          */
         public function getRoles()
         {
-            $roles =  $this->roles->toArray();
-            return array('ROLE_USER') + $roles;
+            return $this->roles->toArray();
         }
 
         /**
@@ -320,6 +320,7 @@
         public function isAccountNonExpired()
         {
             // TODO: Implement isAccountNonExpired() method.
+            return true;
         }
 
         /**
@@ -335,6 +336,7 @@
         public function isAccountNonLocked()
         {
             // TODO: Implement isAccountNonLocked() method.
+            return true;
         }
 
         /**
@@ -350,6 +352,7 @@
         public function isCredentialsNonExpired()
         {
             // TODO: Implement isCredentialsNonExpired() method.
+            return true;
         }
 
         /**

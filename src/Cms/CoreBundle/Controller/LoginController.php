@@ -14,11 +14,6 @@ class LoginController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        $user = new User();
-        $factory  = $this->get('security.encoder_factory');
-        $encoder  = $factory->getEncoder($user);
-        $password = $encoder->encodePassword('test', $user->getSalt());
-
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(
@@ -29,11 +24,11 @@ class LoginController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        var_dump($password, $user->getSalt(), $error);
 
         return $this->render(
             'CmsCoreBundle:Login:admin.html.twig',
             array(
+                'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
             )
         );

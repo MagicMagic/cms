@@ -13,22 +13,28 @@
 {% block body %}
 
     <div id="content">
+
+        {% if error %}
+            <div>{{ error.message }}</div>
+        {% endif %}
+
         <form action="{{ path('cms_core_login_check') }}" method="post">
             <h1>Login</h1>
+
             <div>
-                <label for="username"></label>
-                <input type="text" placeholder="Username" name=_username"" id="username" />
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}"/>
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" name="_password" id="password" />
+                <input type="password" id="password" name="_password"/>
             </div>
             <div>
-                <input type="submit" value="Log in" />
-                <a href="#">Lost your password?</a>
-                <a href="#">Register</a>
+                <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+                <label for="remember_me">Keep me logged in</label>
             </div>
-        </form>
 
+            <input type="submit" name="login"/>
+        </form>
     </div>
 {% endblock %}

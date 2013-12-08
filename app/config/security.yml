@@ -18,10 +18,6 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        login:
-            pattern:  ^/login$
-            security: false
-
         home_area:
             pattern:    ^/
             form_login:
@@ -29,10 +25,13 @@ security:
                 login_path: cms_core_login
             logout:
                 path:   cms_core_logout
-                target: cms
+                target: cms_core_homepage
             anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

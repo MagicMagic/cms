@@ -42,8 +42,7 @@
                 ->setParameter('username', $username)
                 ->getQuery();
 
-            var_dump($q->getSQL(), $username);
-            die;
+
             try {
                 // The Query::getSingleResult() method throws an exception
                 // if there is no record matching the criteria.
